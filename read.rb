@@ -26,7 +26,7 @@ Dir.glob('sample_game_*.log').each do |file|
       while actions.size > 0
         @active_players.each do |player|
           # sb and bb are not the first to act preflop
-          next if first_preflop_action && [players[0], player[1]].include?(player)
+          next if first_preflop_action && [@active_players[0], @active_players[1]].include?(player)
           case actions.shift
 
           when "f"
@@ -61,7 +61,7 @@ Dir.glob('sample_game_*.log').each do |file|
           end
         end
         @active_players = players.dup
-        first_action = false
+        first_preflop_action = false
       end
       if @everyone_check_this_street
         @last_aggressor = nil 
